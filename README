@@ -1,0 +1,60 @@
+CMPUT 274; Project: Battleship Across Arduinos
+
+Names / Sections: 
+Adam Narten / A2
+Daniel Choi / A2
+
+Acknowledgements:
+bmpDraw function was copied from the arduino-ua/examples/Parrot directory
+The use of the piezo buzzer was thanks to D. Cuartielles from 
+https://www.arduino.cc/en/Tutorial/PlayMelody
+
+Descripion:
+The classic game of battleship on two arduinos
+
+Accessories: (Per Arduino)
+* 1 x Arduino Mega Board 2560 (AMG)
+* 1 x Breadboard
+* 1 x Adafruit LCD Display
+* 1 x Sparkfun Thumb Joystick
+* 1 x 560 Ohm (Green Blue Brown) resistor
+* 1 x Pushbutton
+* 1 x Piezo Buzzer
+* Assorted wires
+
+Wiring instructions:
+Arduino GND <--> BB GND Bus
+Arduino 5V <--> BB Positive Bus
+LCD GND <--> BB GND Bus
+LCD VCC <--> BB Positive Bus
+LCD RESET <--> Arduino Pin 8
+LCD D/C <--> Arduino Pin 7
+LCD CARD_CS <--> Arduino Pn 5
+LCD TFT_CS <--> Arudino Pin 6
+LCD MOSI <--> Arduino Pin 51
+LCD SCK <--> Arduino Pin 52
+LCD MISO <--> Arduino Pin 50
+LCD LITE <--> BB Positive Bus
+Joystick VCC <--> BB Positive Bus
+Joystick VERT <--> Arduino Pin A0
+Joystick HORZ <--> Arduino Pin A1
+Joystick SEL <--> Arduino Pin 9
+Joystick GND <--> BB GND Bus
+Arduino Pin 10 <--> Pushbutton <--> BB GND Bus
+Arduino Pin 12 <--> Piezo Buzzer <--> BB GND Bus
+Server Arduino Pin 13 <--> Resistor <--> BB Positive Bus
+Client Arduino Pin 13 <--> Resistor <--> BB GND Bus
+
+Operating instructions:
+Copy the bmp ship files onto both SD cards of the LCD displays.
+With the Arduino connected to the computer and with the Project.cpp file and Makefile in the command prompt's current directory, upload the code to the Arduinos' IDEs using make upload. Serial monitor is not required, only used for reference.
+Once the initialization is complete the Arduinos will wait to acknowledge each other. Once communication is established each player may place all five of their ships. Rotate a ships by clicking the joystick, place a ship using the pushbutton. Ships may not overlap, an error message will appear if user attempts to overlap ships. Whoever places their ships first goes on offence first.
+When in offence, move the yellow cursor around the screen and fire a shot by clicking the joystick. Past shots are displayed as red (hits) or white (misses). Firing at the same location as a past shot will result in a error message on the screen. 
+When in defence, watch the opponent move the cursor around both screens. However only the player in defence can see their ships on their screen.
+When shots are fired the screen will display whether it was a hit or a miss with a corresponding sound effect. If a ship is entirely destroyed, the screens will tell the users which ship was destroyed. If all ships are destroyed then a winning sound effect is played and each screen will display whether the user won or lost (respectively). 
+
+Notes: 	
+- If the initialization fails, reset the Arduinos.
+- If after placing the ships one moves on to offense or defense while the other is still waiting, reset the arduinos.
+- When the cursor moves on the opposite screen it may move faster or slower but it will still correspond to the same square.
+- There is no adjustment for the volume of the sound effects. 
